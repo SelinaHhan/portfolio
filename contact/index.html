@@ -6,34 +6,17 @@
   <title>Yiming Han — Contact</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
+<script type="module" src="../global.js"></script>
 <body>
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../projects/index.html">Projects</a>
-    <a href="index.html">Contact</a>
-    <a href="https://github.com/SelinaHhan" target="_blank" rel="noopener">GitHub</a>
-    <a href="../resume/index.html">Resume</a>
-  </nav>
+  <nav></nav>
 
   <h1>Contact</h1>
-  <form action="mailto:yih059@ucsd.edu" method="POST" enctype="text/plain">
-    <label>
-      Email
-      <input name="email" type="email">
-    </label>
-
-    <label>
-      Subject
-      <input name="subject">
-    </label>
-
-    <label>
-      Message
-      <textarea name="body" rows="6"></textarea>
-    </label>
-
-    <button>Send</button>
+  <form action="mailto:YOUR_EMAIL@ucsd.edu" method="GET">
+    <label>Subject <input name="subject" required></label>
+    <label>Message <textarea name="body" rows="6" required></textarea></label>
+    <button type="submit">Send</button>
   </form>
+  
 </body>
 </html>
 
