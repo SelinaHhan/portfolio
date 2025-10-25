@@ -1,10 +1,10 @@
-import { fetchJSON, renderProjects } from '/global.js';
+import { fetchJSON, renderProjects } from '../global.js';
 
 async function main() {
   const container = document.querySelector('.projects');
   if (!container) return;
 
-  const projects = await fetchJSON('/lib/projects.json');
+  const projects = await fetchJSON('../lib/projects.json');
   if (!Array.isArray(projects)) return;
 
   renderProjects(container, projects);
