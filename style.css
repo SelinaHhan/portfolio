@@ -146,3 +146,23 @@ label.color-scheme {
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.projects {
+  display: grid;                                   /* was flex/blocks? make it grid */
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* keep cards tidy */
+.projects > article {
+  display: grid;
+  gap: .5rem;
+}
+
+/* uniform thumbnails */
+.projects img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
