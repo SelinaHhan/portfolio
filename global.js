@@ -41,12 +41,15 @@ function $$(selector, context = document) {
 }
 
 
+const isGitHubPages = location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/portfolio' : '';
+
 const NAV_ITEMS = [
-  { href: './',           label: 'Home'     },
-  { href: './projects/',  label: 'Projects' },
-  { href: './contact/',   label: 'Contact'  },
-  { href: 'https://github.com/SelinaHhan', label: 'Profile', external: true },
-  { href: './resume/',    label: 'Resume'   },
+    { href: `${basePath}/`,          label: 'Home'     },
+    { href: `${basePath}/projects/`, label: 'Projects' },
+    { href: `${basePath}/contact/`,  label: 'Contact'  },
+    { href: 'https://github.com/SelinaHhan', label: 'Profile', external: true },
+    { href: `${basePath}/resume/`,   label: 'Resume'   },
 ];
   
 function normalizePath(p) {
