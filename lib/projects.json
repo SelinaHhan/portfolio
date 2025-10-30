@@ -2,13 +2,13 @@
     {
         "title": "calorie VS store project",
         "year": "2025",
-        "image": "images/final_graph.png",
+        "image": "../images/final_graph.png",
         "description": "The graph shows the trend of calories and price in three major stores of the US."
     },
     {
         "title": "abortion rights visualization",
         "year": "2024",
-        "image": "images/abortion_high.png",
+        "image": "../images/abortion_high.png",
         "description": "The bar graph shows the highest abortion rates in several states of the US."
     },
     {

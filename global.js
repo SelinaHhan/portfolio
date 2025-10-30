@@ -11,6 +11,7 @@ export async function fetchJSON(url) {
     console.error('Error fetching or parsing JSON data:', error);
   }
 }
+
 export function renderProjects(container, projects) {
   container.innerHTML = '';             
   projects.forEach(p => {
@@ -23,12 +24,21 @@ export function renderProjects(container, projects) {
     if (p.image) {
       const img = document.createElement('img');
       img.src = p.image;
+      img.alt = p.title || 'Project image';
       article.appendChild(img);
     }
 
     const desc = document.createElement('p');
     desc.textContent = p.description || '';
     article.appendChild(desc);
+
+    // Add year display
+    if (p.year) {
+      const year = document.createElement('p');
+      year.className = 'year';
+      year.textContent = p.year;
+      article.appendChild(year);
+    }
 
     container.appendChild(article);
   });

@@ -166,3 +166,145 @@ label.color-scheme {
   object-fit: cover;
   display: block;
 }
+
+/* Add these styles to your existing style.css */
+
+/* Pie chart container */
+.pie-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  margin-block: 2em;
+  padding: 1.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* SVG pie chart styles */
+#projects-pie-plot {
+  max-width: 20em;
+  overflow: visible;
+}
+
+#projects-pie-plot path {
+  cursor: pointer;
+  transition: 300ms;
+}
+
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Selected state */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected path,
+path.selected {
+  fill: var(--color);
+}
+
+/* Legend styles */
+.legend {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 4px;
+  transition: background-color 200ms;
+}
+
+.legend-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.legend-item.selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 2px;
+}
+
+/* Search bar styles */
+.searchBar {
+  width: 100%;
+  max-width: 40em;
+  padding: 0.75em 1em;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-block: 1em;
+  transition: border-color 200ms;
+}
+
+.searchBar:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.searchBar::placeholder {
+  color: #999;
+}
+
+/* Projects container */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2em;
+  margin-block: 2em;
+}
+
+.projects article {
+  border: 1px solid #ddd;
+  padding: 1.5em;
+  border-radius: 8px;
+  transition: transform 200ms, box-shadow 200ms;
+}
+
+.projects article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.projects article h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.projects article img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-block: 1em;
+}
+
+.projects article p {
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+/* Year styling */
+.projects article .year {
+  font-family: Baskerville, Georgia, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: #777;
+  font-style: italic;
+  margin-top: 0.5em;
+}
