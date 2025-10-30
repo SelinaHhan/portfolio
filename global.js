@@ -40,17 +40,18 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
+
 const NAV_ITEMS = [
     { href: '/',            label: 'Home'     },
     { href: '/projects/',   label: 'Projects' },
     { href: '/contact/',    label: 'Contact'  },
-    { href: '/profile/',    label: 'Profile'  },
+    { href: 'https://github.com/SelinaHhan', label: 'Profile', external: true },
     { href: '/resume/',     label: 'Resume'   },
   ];
   
-  function normalizePath(p) {
+function normalizePath(p) {
 
-    return p.replace(/index\.html$/, '').replace(/\/$/, '/') || '/';
+  return p.replace(/index\.html$/, '').replace(/\/$/, '/') || '/';
   }
   
   const nav = document.querySelector('nav');
