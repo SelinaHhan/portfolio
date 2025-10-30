@@ -42,12 +42,12 @@ function $$(selector, context = document) {
 
 
 const NAV_ITEMS = [
-    { href: '/',            label: 'Home'     },
-    { href: '/projects/',   label: 'Projects' },
-    { href: '/contact/',    label: 'Contact'  },
-    { href: 'https://github.com/SelinaHhan', label: 'Profile', external: true },
-    { href: '/resume/',     label: 'Resume'   },
-  ];
+  { href: './',           label: 'Home'     },
+  { href: './projects/',  label: 'Projects' },
+  { href: './contact/',   label: 'Contact'  },
+  { href: 'https://github.com/SelinaHhan', label: 'Profile', external: true },
+  { href: './resume/',    label: 'Resume'   },
+];
   
 function normalizePath(p) {
 
