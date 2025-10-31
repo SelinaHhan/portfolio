@@ -195,14 +195,8 @@ label.color-scheme {
   opacity: 0.5;
 }
 
-/* Selected state */
-.selected {
-  --color: oklch(60% 45% 0) !important;
-}
-
-.selected path,
 path.selected {
-  fill: var(--color);
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8)) brightness(1.2);
 }
 
 /* Legend styles */

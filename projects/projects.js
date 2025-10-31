@@ -127,19 +127,23 @@ function getFilteredProjects() {
   return filtered;
 }
 
+
 // Function to filter and render everything
 function filterAndRenderProjects() {
   const filtered = getFilteredProjects();
   renderProjects(projectsContainer, filtered);
-  renderPieChart(filtered);
+  if (selectedIndex === -1) {
+    renderPieChart(filtered);
+  }
 }
 
 // Search input event listener
 searchInput.addEventListener('input', (event) => {
   query = event.target.value;
-  // Reset selection when searching
   selectedIndex = -1;
-  filterAndRenderProjects();
+  const filtered = getFilteredProjects();
+  renderProjects(projectsContainer, filtered);
+  renderPieChart(filtered);
 });
 
 // Initial render
