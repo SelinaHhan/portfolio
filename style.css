@@ -302,3 +302,12 @@ path.selected {
   font-style: italic;
   margin-top: 0.5em;
 }
+circle.dot.dim { opacity: .12; }
+
+/* Remove focus ring on SVG legend items */
+svg :focus,
+.legend .item:focus,
+.legend .label:focus,
+.legend .swatch:focus {
+  outline: none;
+}
