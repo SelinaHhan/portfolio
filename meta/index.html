@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Code metrics (meta)</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root { color-scheme: light; }
     body {
@@ -21,23 +22,31 @@
     .grid line { stroke: #e6e6e6; }
     .grid .domain { display: none; }
 
-    /* Bubbles */
-    circle.dot         { fill: steelblue; fill-opacity:.35; stroke: steelblue; stroke-opacity:.9; }
-    circle.dot.selected{ fill: #e74c3c;  stroke:#c0392b;   fill-opacity:.55; } /* highlighted */
+    /* Bubbles with CSS transitions */
+    circle.dot {
+      fill: steelblue;
+      fill-opacity: 0.35;
+      stroke: steelblue;
+      stroke-opacity: 0.9;
+      transition: r 200ms ease, cx 200ms ease, cy 200ms ease;
+    }
+    
+    /* Entry animation for new circles */
+    @starting-style {
+      circle.dot {
+        r: 0;
+      }
+    }
+    
+    circle.dot.selected {
+      fill: #e74c3c;
+      stroke: #c0392b;
+      fill-opacity: 0.55;
+    }
 
     #selection-summary { font-size: 14px; font-weight: 600; }
-    .lang-grid { display:grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 1.25rem; }
-    .lang-card h4 { margin:.25rem 0 0 0; font-size: 22px; letter-spacing:.02em; }
-    .lang-card .big { font-size: 26px; font-weight: 700; margin:.15rem 0; }
-    .lang-card .pct { font-size: 18px; opacity:.7; }
 
-    /* Legend (Step 5) */
-    .legend { font-size: 12px; user-select: none; }
-    .legend .item { cursor: pointer; }
-    .legend .swatch { width: 12px; height: 12px; rx: 2; ry: 2; }
-    .legend .item.disabled { opacity: .28; }
-
-    /* Tooltip (Step 3) */
+    /* Tooltip */
     #tooltip {
       position: fixed;
       pointer-events: none;
@@ -48,18 +57,112 @@
       font-size: 12px; line-height: 1.25;
       z-index: 1000; white-space: nowrap;
     }
-    .legend { display: none !important; }
+
+    /* File visualization */
+    #files {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    #files .file-row {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) 2fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    #files dt {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    #files dt small {
+      display: block;
+      font-weight: 400;
+      opacity: 0.6;
+      font-family: system-ui, sans-serif;
+    }
+
+    #files dd {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 3px;
+      line-height: 1;
+    }
+
+    .loc {
+      background: var(--color);
+      width: 0.55em;
+      height: 0.55em;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Scrollytelling layout */
+    #scrolly-1 {
+      position: relative;
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    #scrolly-1 > * {
+      flex: 1;
+    }
+
+    #scatter-story {
+      position: relative;
+    }
+
+    #scatter-story .step {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 3px solid #4a90e2;
+    }
+
+    #scatter-plot {
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+    }
+
+    /* Legend */
+    .legend { font-size: 12px; user-select: none; }
+    .legend .item { cursor: pointer; }
+    .legend .item.disabled { opacity: .28; }
   </style>
 </head>
 <body>
-  <h1 id="chart-title">Commits by time of day</h1>
+  <div id="time-ui">
+    <label for="commit-progress" style="display:flex; align-items:baseline; gap:.75rem; flex-wrap: wrap;">
+      <span>Show commits until:</span>
+      <input id="commit-progress" type="range" min="0" max="100" value="100" style="flex: 1; min-width: 200px;" />
+      <time id="commit-time" style="min-width: 200px; text-align: right;"></time>
+    </label>
+  </div>
 
-  <div id="chart" aria-labelledby="chart-title"></div>
-  <div id="tooltip" role="tooltip" aria-hidden="true"></div>
+  <!-- File visualization with colored dots -->
+  <dl id="files"></dl>
 
-  <div id="selection-summary" style="margin-top:1rem;"></div>
-  <div id="lang-breakdown"  style="margin-top:.25rem;"></div>
-
+  <!-- Scrollytelling section -->
+  <div id="scrolly-1">
+    <div id="scatter-story"></div>
+    <div id="scatter-plot">
+      <h1 id="chart-title">Commits by time of day</h1>
+      <div id="chart" aria-labelledby="chart-title"></div>
+      <div id="tooltip" role="tooltip" aria-hidden="true"></div>
+      <div id="selection-summary" style="margin-top:1rem;"></div>
+      <div id="lang-breakdown" style="margin-top:.25rem;"></div>
+    </div>
+  </div>
 
   <script type="module" src="./main.js"></script>
 </body>
